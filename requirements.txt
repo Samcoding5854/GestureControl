@@ -1,3 +1,4 @@
 cvzone
 tensorflow
 numpy
+mediapipe
