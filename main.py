@@ -35,6 +35,21 @@ emotion_actions = {
 
 #############################################################
 
+def convert_annotations(current_annotations):
+    # Extract the current lmList and add indices
+    lmList_with_index = [[i, coord[0], coord[1]] for i, coord in enumerate(current_annotations['lmList'])]
+
+    # Create the converted annotations dictionary
+    converted_annotations = {
+        'lmList': lmList_with_index,
+        'bbox': current_annotations['bbox'],
+        'center': current_annotations['center'],
+        'type': current_annotations['type']
+    }
+
+    return converted_annotations
+
+
 while True:
     success, img = cap.read()
     emotion = EmotionDetector(img) # Emotion Detector 
@@ -66,8 +81,11 @@ while True:
             fingers = []
             hand1 = hands[0]
             print("hand1: ", hand1)
+            hand1 = convert_annotations(hand1)
             lmlist = hand1["lmList"]
             print("lmlist: ", lmlist)
+
+
 
             ### Counting the Number Displayed on Hand ###
 
