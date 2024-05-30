@@ -2,3 +2,4 @@ cvzone
 tensorflow
 numpy
 mediapipe
+pyautogui

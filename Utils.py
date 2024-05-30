@@ -11,12 +11,18 @@ def extract_features(image):
     return feature/255.0
 
 
-json_file = open("emotiondetectornew1.json", "r")
-model_json = json_file.read()
-json_file.close()
-model = model_from_json(model_json)
+# json_file = open("emotiondetectornew1.json", "r")
+# model_json = json_file.read()
+# json_file.close()
+# model = model_from_json(model_json)
 
-model.load_weights("emotiondetectornew1.h5")
+# model.load_weights("emotiondetectornew1.h5")
+
+from tensorflow.keras.models import load_model
+
+# Load the model from the file
+model = load_model('emotiondetector.h5')
+
 haar_file=cv2.data.haarcascades + 'haarcascade_frontalface_default.xml'
 face_cascade=cv2.CascadeClassifier(haar_file)
 
