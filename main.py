@@ -5,7 +5,6 @@ from HandInfoDetector import HandInfo
 from Utils import EmotionDetector
 from cvzone.HandTrackingModule import HandDetector
 import webbrowser
-import pyautogui
 
 
 ############################################################
@@ -38,7 +37,7 @@ emotion_actions = {
 
 while True:
     success, img = cap.read()
-    emotion = EmotionDetector(img) #Emotion Detector 
+    emotion = EmotionDetector(img) # Emotion Detector 
     print(emotion)
     hands, img = detectorInd.findHands(img)
 
@@ -90,19 +89,19 @@ while True:
             ### Running Commands for next / previous / play / pause ###
             if totalFingers == 1:
                 if fingers == [0, 0, 0, 0, 1]:
-                    pyautogui.hotkey('ctrl', 'right')  # Next track
-                    print("Next Track Played")
+                    subprocess.Popen('nircmd sendkeypress mediaplaypause', shell=True)  # Play/Pause Track
+                    print("Play/Pause Track")
 
                 elif fingers == [1, 0, 0, 0, 0]:
-                    pyautogui.hotkey('ctrl', 'left')  # Previous track
+                    subprocess.Popen('nircmd sendkeypress prevtrack', shell=True)  # Previous Track
                     print("Previous Track Played")
 
             elif totalFingers == 0:
-                pyautogui.hotkey('playpause')  # Pause
+                subprocess.Popen('nircmd sendkeypress mediaplaypause', shell=True)  # Pause
                 print("Paused")
 
             elif totalFingers == 5:
-                pyautogui.hotkey('playpause')  # Play
+                subprocess.Popen('nircmd sendkeypress play', shell=True)  # Play
                 print("Play")
 
         ### Showing the FPS ###
